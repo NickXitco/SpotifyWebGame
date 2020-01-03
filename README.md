@@ -91,4 +91,33 @@ really low level artists and tunnel back up, but who knows, that could be the fa
 				
 Once we have our Z=0 layer picked out, we can run a Steiner Tree approximation with the Z=0 nodes as our terminals and
 the entire graph as our graph, and what we would get is effectively the best highways connecting these big superclusters
-		
+
+## [1/3/2020]
+
+NEW YEAR NEW ME
+
+Let's finally finish this damn project that's haunted me for years. So.
+
+Step 0. Get all the artists on spotify and their 20 connections.
+
+Step 1. Construct the Z<sub>0</sub> layer and here's (one way) how:
+
+1. The goal of this algorithm is to find the 500 artists that maximize the sum of followers in the layer, while also
+maintaining connectivity throughout the layer.
+
+2. Initialize the Z<sub>0</sub> with the 500 most followed (or some other metric) artists.
+
+3. If the graph is connected, then wow this job is a lot easier then I though, however it's likely not, so:
+
+4. Continue to add artists (in descending follower (or other metric) order) until the graph is connected.
+
+5. Find the "redundant vertices" of that set, i.e., the vertices that, if removed, would leave a still-connected graph.
+   
+6. This can be done by creating the fully spanning forest of the graph and selecting any vertices of degree 1, leaves.
+
+7. Delete redundant vertices until the size of the layer is 500.
+
+8. Edge case is if (Current Layer Size - Redundant Vertices) > 500, would have to add more artists in step 4 to counter.
+
+Step 2. Figure out the rest of the layers (to be thought about more)
+	
