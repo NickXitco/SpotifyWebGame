@@ -79,8 +79,47 @@ for this website is to have a few things:
 anyways, gtg, this felt good to right, I'm excited to get to work, not really sure where to start,
 I think a good place would be implementing the graph and search system in Python.
 		
+--[1/31/2019, 8:57PM]--
 		
+We learned about Steiner Trees today in Approximation Algorithms, which, conviniently, might just be
+a great system for handling the Z=0 layer, as I'm calling it now. I'm not quite sure what to define
+as an edge's weight right now, but I think it's going to be based on the change in Z value of each
+node to the other nodes y'know.
+
+But the Z value itself is going to be based on (I think) two main characterstics:
+	- The number of followers the artist has
+	- The distance to other nodes on different Z levels
+	
+Now that seems like circular logic so let me try to just work my thoughts out here. Let's suppose,
+we create our Z=0 layer with a bunch like 500 artists. We'll try to distribute it so that it's not
+400 pop/hiphop artists and 1 rock artist or something. We then set up a quota for each subsequent Z layer.
+Let's say it's Q(Z=0) = 500, Q(Z=1) = 5000, Q(Z=2) = 50000, Q(Z=3) = 500000, Q(Z=4) = inf. that actually might not
+be good logically because we have an issue where a LOT of artists are stragglers, and the most popular artists
+are clustered together so it may need to look more like
+Q(Z=2) = 5000
+Q(Z=3) = 10000
+Q(Z=4) = 25000
+Q(Z=5) = 50000
+Q(Z=6) = 100000
+Q(Z=7) = 250000
+Q(Z=8) = 500000
+Q(Z=9) = inf
+
+something like that. We'll see. Anyways, basically the algorithm would be, after defining a Z=0, and going through
+the list of artists in descending follower-count order:
+
+	- While there are still un-layered artists:
+		> If the artist is connected to an artist in the layer n-1, add it to layer n
+		> Else, add it to another list that we go through before checking never-before-seen artists
+		> If the size of n is equal to Q(n), n++
 		
+That way, while artists towards the top layer also tend to have the most followers, it's more important, and crucial
+actually that the artist has a connection up to the top layer. That way, we don't have dangling artists.
+
+So then an edges weight would just be Z_lower - Z_upper + 1, maybe with a term to make artists in lower layers have a
+penalty to encourage algorithms to search along top level artists and "drill-down" rather than trying to tunnel through
+really low level artists and tunnel back up, but who knows, that could be the fastest method.
 				
-		
+Once we have our Z=0 layer picked out, we can run a Steiner Tree approximation with the Z=0 nodes as our terminals and
+the entire graph as our graph, and what we would get is effectively the best highways connecting these big superclusters
 		
