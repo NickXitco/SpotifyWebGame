@@ -1,7 +1,7 @@
 # SpotifyWebGame
 
 
-##[1/31/2019, 1:04PM]
+## [1/31/2019, 1:04PM]
 
 Alright I don't have time to code anything right now, but I'm having a bad day,
 and I want to get something done that feels like work. Basically the current plan
@@ -47,7 +47,7 @@ for this website is to have a few things:
 anyways, gtg, this felt good to right, I'm excited to get to work, not really sure where to start,
 I think a good place would be implementing the graph and search system in Python.
 		
-##[1/31/2019, 8:57PM]
+## [1/31/2019, 8:57PM]
 		
 We learned about Steiner Trees today in Approximation Algorithms, which, conviniently, might just be
 a great system for handling the Z=0 layer, as I'm calling it now. I'm not quite sure what to define
